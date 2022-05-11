@@ -1,0 +1,2 @@
+[global.databases]
+db = { url = "postgres://user:password@localhost:5432/rocket" }	
