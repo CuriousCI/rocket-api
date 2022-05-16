@@ -1,10 +1,12 @@
 #[macro_use] extern crate rocket;
 #[macro_use] extern  crate diesel;
+// #[macro_use] extern crate rp1;
 
 pub mod models;
 pub mod schema;
 
 use rocket_sync_db_pools::{database, diesel::PgConnection};
+use diesel::prelude::*;
 
 #[database("db")]
 struct Db(PgConnection);
