@@ -1,6 +1,5 @@
 use uuid::Uuid;
-use chrono::NaiveDate;
-
+use crate::Db;
 // use crate::schema::users;
 
 // #[derive(Queryable, AsChangeset)]
@@ -17,7 +16,9 @@ pub struct User {
 	pub gender: String,
 	pub category: String,
 
+	#[validate(email)]
 	pub email: String,
+	#[validate(phone)]
 	pub phone_number: String,
 
 	pub education: String,
@@ -25,7 +26,8 @@ pub struct User {
 	pub workplace: String,
 	pub other_associations: String,
 
-	pub birthday: NaiveDate,
+	// pub birthday: NaiveDate,
+	pub birthday: rp1::datetime::Date,
 	pub birthplace: String,
 	pub birthplace_province: String,
 	pub birthplace_istat_code: String,

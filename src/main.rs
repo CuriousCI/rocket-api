@@ -9,7 +9,7 @@ use rocket_sync_db_pools::{database, diesel::PgConnection};
 use diesel::prelude::*;
 
 #[database("db")]
-struct Db(PgConnection);
+pub struct Db(PgConnection);
 
 #[get("/")]
 fn index() -> &'static str {
@@ -21,4 +21,5 @@ fn rocket() -> _ {
     rocket::build()
 	.attach(Db::fairing())
 	.mount("/", routes![index])
+	.mount("/users", models::user::User::get_routes())
 }
