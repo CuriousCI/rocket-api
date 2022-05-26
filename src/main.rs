@@ -3,11 +3,14 @@
 
 pub mod models;
 pub mod schema;
+pub mod util;
 
-use rocket_sync_db_pools::{database, diesel::PgConnection};
+use rocket_sync_db_pools::{database};
+use diesel::dsl::*;
+use diesel::prelude::*;
 
 #[database("db")]
-pub struct Db(PgConnection);
+pub struct Db(util::PgConnection);
 
 #[get("/")]
 fn index() -> &'static str {
