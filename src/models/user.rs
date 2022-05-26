@@ -1,13 +1,8 @@
 use uuid::Uuid;
-use crate::Db;
-// use crate::schema::users;
+use chrono::NaiveDate;
 
-// #[derive(Queryable, AsChangeset)]
-// #[diesel(table_name = users)]
-
-#[rp1::crud(database = "Db", table = "users", auth="false")]
+#[derive(Queryable)]
 pub struct User {
-	#[primary_key]
 	pub user_id: Uuid,
 
 	pub name: String,
@@ -16,9 +11,7 @@ pub struct User {
 	pub gender: String,
 	pub category: String,
 
-	#[validate(email)]
 	pub email: String,
-	#[validate(phone)]
 	pub phone_number: String,
 
 	pub education: String,
@@ -26,8 +19,7 @@ pub struct User {
 	pub workplace: String,
 	pub other_associations: String,
 
-	// pub birthday: NaiveDate,
-	pub birthday: rp1::datetime::Date,
+	pub birthday: NaiveDate,
 	pub birthplace: String,
 	pub birthplace_province: String,
 	pub birthplace_istat_code: String,

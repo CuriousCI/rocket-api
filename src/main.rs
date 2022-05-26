@@ -1,12 +1,10 @@
 #[macro_use] extern crate rocket;
-#[macro_use] extern  crate diesel;
-// #[macro_use] extern crate rp1;
+#[macro_use] extern crate diesel;
 
 pub mod models;
 pub mod schema;
 
 use rocket_sync_db_pools::{database, diesel::PgConnection};
-use diesel::prelude::*;
 
 #[database("db")]
 pub struct Db(PgConnection);
@@ -21,5 +19,4 @@ fn rocket() -> _ {
     rocket::build()
 	.attach(Db::fairing())
 	.mount("/", routes![index])
-	.mount("/users", models::user::User::get_routes())
 }

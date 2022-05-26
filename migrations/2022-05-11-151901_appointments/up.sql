@@ -2,7 +2,7 @@ CREATE TABLE
     appointments (
         appointment_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
 
-        at DATE NOT NULL,
+        at TIMESTAMP NOT NULL,
 
         user_id UUID,
 
