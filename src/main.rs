@@ -7,7 +7,7 @@ pub mod util;
 
 use rocket_sync_db_pools::{database};
 use diesel::dsl::*;
-use diesel::prelude::*;
+use diesel::prelude::*;	 
 
 #[database("db")]
 pub struct Db(util::PgConnection);
