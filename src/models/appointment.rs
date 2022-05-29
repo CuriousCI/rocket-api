@@ -76,9 +76,8 @@ pub async fn get_id(id: Guid, db: Db) -> Json<Appointment> {
     )
 }
 
-#[put("/<id>", data = "<appointment>")]
-pub async fn put(id: Guid, appointment: Json<UpdateAppointment>, db: Db) {
-    let id = to_uuid(id).unwrap();
+#[put("/", data = "<appointment>")]
+pub async fn put(appointment: Json<UpdateAppointment>, db: Db) {
     let appointment = appointment.into_inner();
 
     db.run(move |db| update(appointments).set(&appointment).execute(db))

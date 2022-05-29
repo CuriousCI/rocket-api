@@ -61,9 +61,8 @@ pub async fn get_id(id: Guid, db: Db) -> Json<Feedback> {
     )
 }
 
-#[put("/<id>", data = "<feed>")]
-pub async fn put(id: Guid, feed: Json<UpdateFeedback>, db: Db) {
-    let id = to_uuid(id).unwrap();
+#[put("/", data = "<feed>")]
+pub async fn put(feed: Json<UpdateFeedback>, db: Db) {
     let feed = feed.into_inner();
 
     db.run(move |db| update(feedback).set(&feed).execute(db))
