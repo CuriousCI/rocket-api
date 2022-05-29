@@ -1,6 +1,6 @@
 // @generated automatically by Diesel CLI.
 
-diesel::table! {
+table! {
     appointments (appointment_id) {
         appointment_id -> Uuid,
         at -> Timestamp,
@@ -16,7 +16,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     feedback (feedback_id) {
         feedback_id -> Uuid,
         text -> Text,
@@ -27,7 +27,7 @@ diesel::table! {
     }
 }
 
-diesel::table! {
+table! {
     users (user_id) {
         user_id -> Uuid,
         name -> Text,
@@ -53,10 +53,10 @@ diesel::table! {
     }
 }
 
-diesel::joinable!(appointments -> users (user_id));
-diesel::joinable!(feedback -> users (user_id));
+joinable!(appointments -> users (user_id));
+joinable!(feedback -> users (user_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
+allow_tables_to_appear_in_same_query!(
     appointments,
     feedback,
     users,
