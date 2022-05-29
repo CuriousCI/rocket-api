@@ -7,12 +7,11 @@ pub mod models;
 pub mod schema;
 pub mod util;
 
-use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
+use chrono::NaiveDateTime;
 use diesel::{dsl::*, prelude::*};
-use rocket::serde::{json::Json, uuid::Uuid as Id, Deserialize, Serialize};
+use models::*;
+use rocket::serde::{json::Json, uuid::Uuid as Guid, Deserialize, Serialize};
 use rocket_sync_db_pools::{database, diesel::PgConnection};
-// use util::Guid;
-use rocket::serde::uuid::Uuid as Guid;
 use util::to_uuid;
 use uuid::Uuid;
 
@@ -29,4 +28,30 @@ fn rocket() -> _ {
     rocket::build()
         .attach(Db::fairing())
         .mount("/", routes![index])
+        .mount(
+            "appointments",
+            routes![
+                appointment::post,
+                appointment::get,
+                appointment::get_id,
+                appointment::put,
+                appointment::delete
+            ],
+        )
+        .mount(
+            "feedback",
+            routes![
+                feedback::post,
+                feedback::get,
+                feedback::get_id,
+                feedback::put,
+                feedback::delete
+            ],
+        )
+        .mount(
+            "users",
+            routes![
+                // user::
+            ],
+        )
 }

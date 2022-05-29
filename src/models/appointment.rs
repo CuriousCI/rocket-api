@@ -89,4 +89,8 @@ pub async fn put(id: Guid, appointment: Json<UpdateAppointment>, db: Db) {
 #[delete("/<id>")]
 pub async fn delete(id: Guid, db: Db) {
     let id = to_uuid(id).unwrap();
+
+    db.run(move |db| diesel::delete(appointments.filter(appointment_id.eq(id))).execute(db))
+        .await
+        .unwrap();
 }
